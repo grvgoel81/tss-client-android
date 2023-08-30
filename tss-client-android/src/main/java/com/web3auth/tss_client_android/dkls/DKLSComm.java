@@ -40,7 +40,7 @@ public final class DKLSComm {
                     MessageQueue.shared().removeMessage(session, remote.intValue(), index.intValue(), msgType);
                     found = true;
                 }
-                if (new Date().getTime() > now.getTime() + 5000 && !found) { // 5 second wait max
+                if (new Date().getTime() > now.getTime() + 20000 && !found) { // 5 second wait max
                     System.out.println("Failed to receive message in reasonable time");
                     break;
                 } else {
