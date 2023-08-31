@@ -22,9 +22,10 @@ public class TSSSocket {
         try {
             IO.Options options;
             boolean local_servers = System.getProperty("LOCAL_SERVERS") != null;
+            String query = "sessionId=" + session.split(Delimiters.Delimiter4)[1];
             if (local_servers) {
                 options = IO.Options.builder()
-                        .setQuery(session.split(Delimiters.Delimiter4)[1])
+                        .setQuery(query)
                         .setTransports(new String[]{WebSocket.NAME})
                         .setReconnectionDelayMax(10000)
                         .setReconnectionAttempts(3)
@@ -33,7 +34,7 @@ public class TSSSocket {
             } else {
                 options = IO.Options.builder()
                         .setPath("/tss/socket.io")
-                        .setQuery(session.split(Delimiters.Delimiter4)[1])
+                        .setQuery(query)
                         .setTransports(new String[]{WebSocket.NAME})
                         .setSecure(true)
                         .setReconnectionDelayMax(10000)
