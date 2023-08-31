@@ -140,6 +140,7 @@ public class TSSClient {
                     String tssUrl = tssConnection.first.getUrl();
                     String urlStr = tssUrl + "/precompute";
                     URL url = new URL(urlStr);
+                    System.out.println("x-web3-session-id: " + TSSClient.sid(session));
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("POST");
                     connection.setRequestProperty("Access-Control-Allow-Origin", "*");

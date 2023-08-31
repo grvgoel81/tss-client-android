@@ -37,10 +37,11 @@ public final class DKLSComm {
                 Message message = MessageQueue.shared().findMessage(session, remote.intValue(), index.intValue(), msgType);
                 if (message != null) {
                     result = message.getMsgData();
+                    System.out.println("Read from servers: " + result);
                     MessageQueue.shared().removeMessage(session, remote.intValue(), index.intValue(), msgType);
                     found = true;
                 }
-                if (new Date().getTime() > now.getTime() + 20000 && !found) { // 5 second wait max
+                if (new Date().getTime() > now.getTime() + 5000 && !found) { // 5 second wait max
                     System.out.println("Failed to receive message in reasonable time");
                     break;
                 } else {
@@ -69,6 +70,7 @@ public final class DKLSComm {
             if (msgTypeParts.length >= 2) {
                 String tag = msgTypeParts[1];
                 TssSendMsg msg = new TssSendMsg(session, index.intValue(), remote.intValue(), msgType, msgData);
+                System.out.println("Send to servers: " + session + index.intValue() + remote.intValue() + msgType + msgData);
                 if (tsssocket != null && tsssocket.getSocket() != null) {
                     tsssocket.getSocket().emit("send_msg", msg.toJsonObject());
                     return true;
