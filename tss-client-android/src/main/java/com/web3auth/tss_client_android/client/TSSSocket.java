@@ -22,7 +22,7 @@ public class TSSSocket {
         try {
             IO.Options options;
             boolean local_servers = System.getProperty("LOCAL_SERVERS") != null;
-            String query = "sessionId=" + session.split(Delimiters.Delimiter4)[1];
+            String query = session.split(Delimiters.Delimiter4)[1];
             if (local_servers) {
                 options = IO.Options.builder()
                         .setQuery(query)
